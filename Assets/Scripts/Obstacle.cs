@@ -11,6 +11,7 @@ public class Obstacle : MonoBehaviour
     private float randomSize;
     private Rigidbody2D rb;
 
+    public GameObject bouncePrefab;
     // set random size and random rotation
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,5 +45,30 @@ public class Obstacle : MonoBehaviour
         Vector2 direction = Random.insideUnitCircle.normalized;
 
         rb.AddForce(direction * forceValue, ForceMode2D.Impulse);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        float mySpeed = rb.linearVelocity.magnitude;
+
+        float collidedSpeed = 0f;
+
+        if (collision.rigidbody != null)
+        {
+            collidedSpeed = collision.rigidbody.linearVelocity.magnitude;
+        }
+
+        if (mySpeed > collidedSpeed)
+        {
+            Vector2 contactPoint = collision.GetContact(0).point;
+
+            GameObject bounceEffect = Instantiate(
+                bouncePrefab,
+                contactPoint,
+                Quaternion.identity
+            );
+
+            Destroy(bounceEffect, 1f);
+        }
     }
 }

@@ -187,3 +187,4 @@ MonoBehaviour:
   minSpeed: 1
   maxSpeed: 5
   rotationSpeed: 5
+  bouncePrefab: {fileID: 7412209016702020939, guid: 692cb112a7164764c9c4f3d623c9d287, type: 3}
