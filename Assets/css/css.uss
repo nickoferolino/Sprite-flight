@@ -1,0 +1,29 @@
+.restartBtn {
+    position: absolute;
+    top: 40%;
+    align-self: center;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    -unity-font-definition: url("project://database/Assets/Fonts/Nabla-Regular-VariableFont_EDPT,EHLT.ttf?fileID=12800000&guid=afed0fa685a74874fa803550ec4f87eb&type=3#Nabla-Regular-VariableFont_EDPT,EHLT");
+    color: rgb(255, 255, 255);
+    font-size: 64px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    background-color: rgb(63, 63, 63);
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    -unity-font-style: bold;
+}
+
+.restartBtn:hover {
+    background-color: rgb(159, 0, 0);
+    width: 300px;
+    height: 150px;
+    align-items: center;
+}

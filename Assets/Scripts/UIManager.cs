@@ -10,19 +10,20 @@ public class UIManager : MonoBehaviour
     private Label scoreText;
     private Button restartBtn;
 
-
+    
 
     private void Start()
     {
 
-
-
+       
         scoreText = uiDucoment.rootVisualElement.Q<Label>("ScoreLabel");
         restartBtn = uiDucoment.rootVisualElement.Q<Button>("RestartBtn");
-
+        scoreText.text = "Score: 0"; 
         restartBtn.style.display = DisplayStyle.None;
 
         //restartBtn.style.display = DisplayStyle.Flex;
+        restartBtn.clicked += RestartGame;
+
     }
     private void Update()
     {
@@ -44,6 +45,12 @@ public class UIManager : MonoBehaviour
         scoreText.text = "Score: " + score;
 
 
+    }
+
+
+    public void RestartGame()
+    {
+        GameManager.Instance.ResetGame();
     }
  
 

@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        score = 0;
         // If another GameManager already exists, destroy this one
         if (Instance != null && Instance != this)
         {
@@ -30,12 +31,13 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         // Optional: persist between scenes
-        DontDestroyOnLoad(gameObject);
+        
     }
 
 
     private void Start()
     {
+        
         isGameActive = true;
     }
 
@@ -56,7 +58,9 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame()
     {
+        
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        score = 0;
     }
 
     public void UpdateScore()
