@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        PauseGame();
         score = 0;
         // If another GameManager already exists, destroy this one
         if (Instance != null && Instance != this)
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         
-        isGameActive = true;
+        
     }
 
     void Update()
@@ -53,7 +54,8 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         isGameActive = true;
-
+        uiManager.ShowScreen(gameplayScreen);
+        Time.timeScale = 1f;
     }
 
     public void ResetGame()
@@ -84,6 +86,16 @@ public class GameManager : MonoBehaviour
     {
         isGameActive = false;
         uiManager.ShowRestartBtn();
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+    }
+    
+    public void UnPauseGame()
+    {
+        Time.timeScale = 1f;
     }
 
 

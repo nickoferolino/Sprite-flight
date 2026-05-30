@@ -4,30 +4,57 @@ using UnityEngine.UIElements;
 public class UIManager : MonoBehaviour
 {
     public UIDocument uiDucoment;
+    private VisualElement root;
 
-    
+    private VisualElement startScreen;
+
+    private VisualElement gameplayScreen;
+
+    private VisualElement resultScreen;
 
     private Label scoreText;
+    private Button startBtn;
     private Button restartBtn;
-
-    
 
     private void Start()
     {
 
-       
-        scoreText = uiDucoment.rootVisualElement.Q<Label>("ScoreLabel");
-        restartBtn = uiDucoment.rootVisualElement.Q<Button>("RestartBtn");
-        scoreText.text = "Score: 0"; 
-        restartBtn.style.display = DisplayStyle.None;
+        root = uiDucoment.rootVisualElement;
 
-        //restartBtn.style.display = DisplayStyle.Flex;
-        restartBtn.clicked += RestartGame;
+        startScreen = root.Q("StartScreenContainer");
+        gameplayScreen = root.Q("GamePlayScreenContainer");
+        resultScreen = root.Q("ResultScreenContainer");
+
+        startBtn = root.Q<Button>("StartBtn");
+        restartBtn = root.Q<Button>("RestartBtn");
+        scoreText = root.Q<Label>("ScoreText");
+
+
+        scoreText.text = "Score: 0";
+
+
+        startScreen.style.display = DisplayStyle.None;
+        gameplayScreen.style.display = DisplayStyle.None;
+        resultScreen.style.display = DisplayStyle.None;
+
+
+        ShowScreen(startScreen);
+
+        startBtn.clicked += GameManager.Instance.GameStart;
+        restartBtn.clicked += GameManager.Instance.ResetGame;
 
     }
     private void Update()
     {
         UpdateScoreText();
+    }
+    void ShowScreen(VisualElement screenToShow)
+    {
+        startScreen.style.display = DisplayStyle.None;
+        gameplayScreen.style.display = DisplayStyle.None;
+        resultScreen.style.display = DisplayStyle.None;
+
+        screenToShow.style.display = DisplayStyle.Flex;
     }
 
 
@@ -48,11 +75,21 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void RestartGame()
-    {
-        GameManager.Instance.ResetGame();
-    }
  
 
+
+    public void ShowGamePlayScreen()
+    {
+        //Show the Counting Score
+        // Show the HighScore on top right side
+
+    }
+
+    public void ShowEndScreen()
+    {
+        // Show score
+        // High score
+        // Restart btn
+    }
 
 }

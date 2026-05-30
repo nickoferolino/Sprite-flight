@@ -49,34 +49,39 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+
+        if (GameManager.Instance.isGameActive)
         {
-            //it gets the mouse position in the world
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
-            Vector2 direction = (mouseWorldPos - transform.position).normalized;
-
-            //Moves player toward the mouse position when clicked
-            transform.up = direction;
-
-            rb.AddForce(direction * thrustStrength, ForceMode2D.Impulse);
-
-            if (rb.linearVelocity.magnitude > maxSpeed)
+            if (Mouse.current.leftButton.isPressed)
             {
-                rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+                //it gets the mouse position in the world
+                Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+                Vector2 direction = (mouseWorldPos - transform.position).normalized;
+
+                //Moves player toward the mouse position when clicked
+                transform.up = direction;
+
+                rb.AddForce(direction * thrustStrength, ForceMode2D.Impulse);
+
+                if (rb.linearVelocity.magnitude > maxSpeed)
+                {
+                    rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+                }
+
             }
 
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                Debug.Log("Mouse button pressed!");
+                thruster.SetActive(true);
+            }
+            else if (Mouse.current.leftButton.wasReleasedThisFrame)
+            {
+                Debug.Log("Mouse button released!");
+                thruster.SetActive(false);
+            }
         }
-
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            Debug.Log("Mouse button pressed!");
-            thruster.SetActive(true);
-        }
-        else if (Mouse.current.leftButton.wasReleasedThisFrame)
-        {
-            Debug.Log("Mouse button released!");
-            thruster.SetActive(false);
-        }
+        
     }
 
 
